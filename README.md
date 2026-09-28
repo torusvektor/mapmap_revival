@@ -1,115 +1,62 @@
-MapMap Revival (Windows)
-========================
+# MapMap Revival (Android)
 
-> **Fork maintenu pour Windows 11** - Version portable pour ateliers pédagogiques
+> **Professional Projection Mapping & Spatial Augmented Reality Studio for Android**
+> Ported and rewritten in modern Kotlin & Jetpack Compose from the original C++/Qt MapMap project.
 
-:warning: **Ce fork concerne uniquement Windows. Les versions Linux et macOS n'ont pas été corrigées et ne sont pas supportées.**
+MapMap is open-source projection mapping and video mapping software. Projection mapping is used to turn objects, often irregularly shaped, into a display surface for video projection.
 
-:robot: **Ce fork a été entièrement mis à jour par l'IA ![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white) (Anthropic) sur l'initiative de @gilforge pour des travaux étudiants en arts graphiques.**
+## Features Ported & Implemented
 
-MapMap is a free video mapping software.
+- **Surface Warping & Shapes:**
+  - **Quads**: 4-point homography and projective perspective deformation.
+  - **Triangles**: 3-point affine projection for triangular surfaces and architectural facets.
+  - **Meshes**: NxM control vertex grids (from 2x2 up to 8x8) for non-linear warping onto cylinders, spheres, and irregular 3D objects using hardware-accelerated bitmap mesh rendering.
+  - **Ellipses / Circles**: Circular mapping shapes with center and radius controls.
 
-Projection mapping, also known as video mapping and spatial augmented
-reality, is a projection technology used to turn objects, often
-irregularly shaped, into a display surface for video projection.
-These objects may be complex industrial landscapes, such as buildings.
-By using specialized software, a two or three dimensional object is
-spatially mapped on the virtual program which mimics the real
-environment it is to be projected on. The software can interact with a
-projector to fit any desired image onto the surface of that object.
-This technique is used by artists and advertisers alike who can add
-extra dimensions, optical illusions, and notions of movement onto
-previously static objects. The video is commonly combined with, or
-triggered by, audio to create an audio-visual narrative.
+- **Paints & Media Sources:**
+  - **Video Synthesizers**: Real-time generative video loops (Cyber Tunnel, Waveform Spectrum, Kaleidoscope, Strobe Beats) with play/pause/rewind controls.
+  - **Test Signals & Calibration**: SMPTE/PAL color bars, 10% alignment crosshairs, concentric circle calibration, checkerboard grid, and classic broadcast test cards.
+  - **Image Paints**: Bundled MapMap branding graphics and custom bitmap assets.
+  - **Color Paints**: Solid RGBA color swatches and black mask barriers.
+  - **Live Camera Feed**: Support for mapping live camera video streams onto projection geometries.
 
+- **Projection Studio & Dual Viewport:**
+  - **Output Viewport**: Multi-layer composited warping with interactive node dragging, boundary wireframes, and control handles.
+  - **Input Viewport**: Texture coordinate cropping and sub-region selection.
+  - **Touch Magnifier Loupe**: Precision crosshair floating above the user's touch point to prevent finger occlusion during calibration.
+  - **Precision D-Pad Nudge**: 1px, 5px, and 20px 4-way arrow controls for sub-pixel alignment in dark projection environments.
+  - **Sticky Vertex Snapping**: Automatic magnetic snapping to neighboring vertices and alignment grid lines.
 
-Version
--------
-**0.7.0-windows** (January 2026)
+- **Layer Management:**
+  - Layer stack ordering (move up / down).
+  - Solo mode ('S') to isolate individual layers during calibration.
+  - Visibility toggles (eye icon) and lock toggles to prevent accidental edits.
+  - Real-time layer opacity blending sliders (0% - 100%).
+  - Layer duplication and deletion.
 
-This is a portable version - no installation required. Just extract and run `MapMap.exe`.
+- **Open Sound Control (OSC) Remote:**
+  - UDP port 12345 listener and dispatcher.
+  - Commands: `/mapmap/play`, `/mapmap/pause`, `/mapmap/rewind`, `/mapmap/blackout <0|1>`, `/mapmap/testsignal <0|1>`, `/mapmap/mapping/opacity <id> <val>`, `/mapmap/mapping/solo <id> <val>`, `/mapmap/mapping/visible <id> <val>`, `/mapmap/mapping/locked <id> <val>`.
+  - Built-in interactive OSC testing console and live activity event monitor.
 
+- **Project Management & Presets:**
+  - Save and load project shows.
+  - Pre-configured mapping presets:
+    - *Architectural Facade* (pediment triangle, central mesh, column quads)
+    - *3D Isometric Cube* (3-face isometric cube optical illusion)
+    - *Curved Column Mesh* (5x5 grid calibrated for cylindrical surfaces)
+    - *Multi-Surface Stage* (central diamond quad flanked by stage wings)
+  - JSON project import / export to clipboard.
 
-Changes from original MapMap 0.6.3
-----------------------------------
-- Fixed for Windows 11 with Qt 5.15.2 and GStreamer 1.26
-- Fixed OpenGL rendering issues (Output Editor refresh)
-- Fixed GStreamer auto-configuration (no manual PATH setup needed)
-- Fixed shape creation when video dimensions are unavailable
-- Replaced heavy QtWebEngine with lightweight QTextBrowser for shortcuts window
-- Fixed QOSC library linking for Windows
-- Portable version: works without installation
+- **Projector Presentation Mode:**
+  - Fullscreen borderless output view for direct projection to external beamers and secondary displays via HDMI, USB-C, or Cast.
 
+## Technology Stack
 
-Requirements (Windows)
-----------------------
-- Windows 10/11 64-bit
-- A graphics card with OpenGL support
-- For multi-screen output: set Windows display mode to "Extend" (Win+P)
+- **Framework**: Android SDK 36, Kotlin 2.2, Jetpack Compose, Material 3
+- **Rendering**: Hardware-accelerated Canvas with projective homography, `drawBitmapMesh`, and custom shader mathematics
+- **Architecture**: MVVM with Kotlin Coroutines & StateFlow
 
+## License
 
-Build from source (Windows)
----------------------------
-Prerequisites:
-- Qt 5.15.2 MSVC 2019 64-bit
-- Visual Studio 2019 Build Tools
-- GStreamer 1.26 MSVC 64-bit (development package)
-
-```powershell
-# Build
-powershell -ExecutionPolicy Bypass -File build.ps1
-
-# Deploy Qt DLLs
-powershell -ExecutionPolicy Bypass -File deploy.ps1
-
-# Copy GStreamer DLLs manually from your GStreamer installation
-```
-
-
-Original Authors
-----------------
-* Sofian Audry: lead developer, user interface designer, project manager.
-* Dame Diongue: developer.
-* Alexandre Quessy: release manager, developer, technical writer, project manager.
-* Mike Latona: user interface designer.
-* Vasilis Liaskovitis: developer.
-
-
-Contributors
-------------
-* Lucas Adair : developer, macOS packaging.
-* Christian Ambaud: sponsor, inspiration.
-* Alex Barry: user experience design.
-* Eliza Bennett : documentation, chinese translation.
-* Jonathan Roman Bland : developer.
-* Sylvain Cormier: developer.
-* Maxime Damecour: inspiration.
-* Louis Desjardins: project manager.
-* Ian Donnelly : user interface designer, documentation.
-* Gene Felice : video package, documentation.
-* Julien Keable: developer.
-* Marc Lavallée: help with packaging.
-* Matthew Loewens : documentation, developer.
-* Madison Suniga : documentation.
-* **Gilles Aubin** (@gilforge, gilles-aubin.net) : Windows 11 revival, portable version (2026).
-
-
-Acknowledgements
-----------------
-The original MapMap project was made possible by the support of the International
-Organization of La Francophonie (http://www.francophonie.org/).
-
-:warning: **Note: This fork (mapmap_revival) is not affiliated with or supported by La Francophonie. The original project is no longer maintained.**
-
-This Windows revival fork was created for educational purposes using AI-assisted development.
-
-
-More info
----------
-* Original project: http://mapmap.info
-* Original repository: https://github.com/mapmapteam/mapmap
-
-
-Licence
--------
-[GNU GPL v3](https://github.com/mapmapteam/mapmap/blob/develop/LICENSE)
+GPL v3 (inherited from MapMap project)

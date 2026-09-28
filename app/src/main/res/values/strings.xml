@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MapMap</string>
+    <string name="app_tagline">Projection Mapping Studio</string>
+    <string name="menu_paints">Paints</string>
+    <string name="menu_mappings">Mappings</string>
+    <string name="menu_output">Output</string>
+    <string name="menu_osc">OSC Remote</string>
+    <string name="action_add_quad">Add Quad</string>
+    <string name="action_add_triangle">Add Triangle</string>
+    <string name="action_add_mesh">Add Mesh</string>
+    <string name="action_add_ellipse">Add Circle</string>
+    <string name="action_add_color_paint">Color Paint</string>
+    <string name="action_add_image_paint">Image Paint</string>
+    <string name="action_add_test_signal">Test Signal</string>
+    <string name="action_add_camera_paint">Camera Paint</string>
+    <string name="action_save_project">Save Project</string>
+    <string name="action_load_project">Open Project</string>
+    <string name="action_export">Export Mapping</string>
+    <string name="action_fullscreen">Fullscreen Output</string>
+    <string name="action_toggle_controls">Toggle Handles</string>
+    <string name="camera_permission_rationale">Camera permission is needed to map live camera feed as a projection paint.</string>
+</resources>

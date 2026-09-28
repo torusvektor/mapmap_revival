@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mapmap_dark">#12161E</color>
+    <color name="mapmap_surface">#1A202C</color>
+    <color name="mapmap_surface_variant">#242D3D</color>
+    <color name="mapmap_accent">#3B82F6</color>
+    <color name="mapmap_teal">#06B6D4</color>
+    <color name="mapmap_coral">#F43F5E</color>
+    <color name="mapmap_amber">#F59E0B</color>
+</resources>
